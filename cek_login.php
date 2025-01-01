@@ -1,6 +1,6 @@
 <?php
 session_start();
-$conn = mysqli_connect("localhost", "root", "", "NAMA_DATABASE");
+$conn = mysqli_connect("localhost", "root", "", "db_laundry");
 
 $username = $_POST['username'];
 $password = md5($_POST['password']);
