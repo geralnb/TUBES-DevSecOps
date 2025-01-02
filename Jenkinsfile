@@ -54,10 +54,10 @@ pipeline {
                 git checkout dev
                 git config user.name "geralnb"
                 git config user.email "shirometeora@gmail.com"
-                git pull origin dev --rebase
+                git pull origin dev --rebase || echo "Rebase failed, continuing with local changes"
                 git add .
-                git commit -m "Auto-fix formatting issues using PHPCBF #33"
-                git push origin dev
+                git commit -m "Auto-fix formatting issues using PHPCBF #34" || echo "No changes to commit"
+                git push origin dev || echo "Push failed, check logs"
                 """
             }
         }
