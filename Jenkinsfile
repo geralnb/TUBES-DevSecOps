@@ -16,11 +16,13 @@ pipeline {
         }
         stage('Fix Formatting Issues') {
             steps {
-                echo 'Fixing formatting issues with PHPCBF...'
-                bat """
-                ${PHPCBF_PATH} --standard=PSR12 . ${PHPCBF_PATH} --standard=PSR12 .
-                
-                """
+                catchError(buildResult: 'UNSTABLE', stageResult: 'UNSTABLE') {
+                    echo 'Fixing formatting issues with PHPCBF...'
+                    bat """
+                    ${PHPCBF_PATH} --standard=PSR12 .
+                    
+                    """
+                }
             }
         }
         stage('Check Formatting (PHPCS)') {
