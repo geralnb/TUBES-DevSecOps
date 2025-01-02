@@ -41,6 +41,17 @@ pipeline {
                 """
             }
         }
+        stage('Commit Changes') {
+            steps {
+                bat """
+                git config user.name "geralnb"
+                git config user.email "shirometeora@gmail.com"
+                git add .
+                git commit -m "Auto-fix formatting issues using PHPCBF"
+                git push origin dev
+                """
+            }
+        }
         stage('Unit Tests') {
             steps {
                 echo 'Running unit tests...'
