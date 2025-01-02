@@ -54,8 +54,9 @@ pipeline {
                 git checkout dev
                 git config user.name "geralnb"
                 git config user.email "shirometeora@gmail.com"
+                git pull origin dev --rebase
                 git add .
-                git commit -m "Auto-fix formatting issues using PHPCBF #31"
+                git commit -m "Auto-fix formatting issues using PHPCBF #33"
                 git push origin dev
                 """
             }
