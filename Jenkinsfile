@@ -13,6 +13,12 @@ pipeline {
                 bat 'php -l index.php' // Validasi syntax PHP
             }
         }
+        stage('Fix Formatting Issues') {
+            steps {
+                echo 'Fixing formatting issues with PHPCBF...'
+                bat "${PHPCBF_PATH} --standard=PSR12 --ignore=vendor/*,node_modules/* ."
+            }
+        }
         stage('Static Code Analysis (SAST)') {
             steps {
                 echo 'Running static code analysis...'
