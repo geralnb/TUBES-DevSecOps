@@ -16,7 +16,7 @@ pipeline {
         stage('Fix Formatting Issues') {
             steps {
                 echo 'Fixing formatting issues with PHPCBF...'
-                bat "${PHPCBF_PATH} --standard=PSR12 --ignore=vendor/*,node_modules/* ."
+                bat "${PHPCBF_PATH} --standard=PSR12 ."
             }
         }
         stage('Static Code Analysis (SAST)') {
