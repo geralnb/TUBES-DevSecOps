@@ -47,20 +47,6 @@ pipeline {
                 }
             }
         }
-        stage('Commit Changes') {
-            steps {
-                bat """
-                git fetch origin
-                git checkout dev
-                git config user.name "geralnb"
-                git config user.email "shirometeora@gmail.com"
-                git pull origin dev --rebase || echo "Rebase failed, continuing with local changes"
-                git add .
-                git commit -m "Auto-fix formatting issues using PHPCBF #34" || echo "No changes to commit"
-                git push origin dev || echo "Push failed, check logs"
-                """
-            }
-        }
         stage('Unit Tests') {
             steps {
                 echo 'Running unit tests...'
