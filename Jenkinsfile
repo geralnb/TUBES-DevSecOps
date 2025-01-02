@@ -44,8 +44,8 @@ pipeline {
         stage('Commit Changes') {
             steps {
                 bat """
-                git config user.name "username"
-                git config user.email "email@gmail.com"
+                git config user.name "geralnb"
+                git config user.email "shirometeora@gmail.com"
                 git add .
                 git commit -m "Auto-fix formatting issues using PHPCBF"
                 git push origin dev
