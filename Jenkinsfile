@@ -25,13 +25,17 @@ pipeline {
         stage('Check Formatting (PHPCS)') {
             steps {
                 echo 'Running static code analysis with PHPCS...'
-                bat "${PHPCS_PATH} --standard=PSR12 . || true" // Contoh dengan PHP_CodeSniffer
+                bat """${PHPCS_PATH} --standard=PSR12 .
+                exit /b 0
+                """ // Contoh dengan PHP_CodeSniffer
             }
         }
         stage('Report Formatting Issues') {
             steps {
                 echo 'Reporting remaining formatting issues...'
-                bat "${PHPCS_PATH} --standard=PSR12 . || true"
+                bat """${PHPCS_PATH} --standard=PSR12 .
+                exit /b 0
+                """
             }
         }
         stage('Commit Changes') {
