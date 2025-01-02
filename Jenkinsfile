@@ -1,9 +1,9 @@
 pipeline {
     agent any
     environment {
-        TEST_URL = 'http://localhost/laundry3/' // URL environment testing
-        STAGING_URL = 'http://localhost/laundry3/' // URL environment staging
-        STAGING_PATH = 'C:\\xampp\\htdocs\\laundry3' // Path ke folder staging
+        TEST_URL = 'http://localhost/laundry3/'
+        STAGING_URL = 'http://localhost/laundry3/'
+        STAGING_PATH = 'C:\\xampp\\htdocs\\laundry3'
         PHPCS_PATH = 'C:\\Users\\Geral\\AppData\\Roaming\\Composer\\vendor\\bin\\phpcs.bat'
         PHPCBF_PATH = 'C:\\Users\\Geral\\AppData\\Roaming\\Composer\\vendor\\bin\\phpcbf.bat'
     }
@@ -11,13 +11,14 @@ pipeline {
         stage('Syntax Check') {
             steps {
                 echo 'Checking PHP syntax...'
-                bat 'php -l index.php' // Validasi syntax PHP
+                bat 'php -l index.php'
             }
         }
         stage('Fix Formatting Issues') {
             steps {
                 echo 'Fixing formatting issues with PHPCBF...'
-                bat """${PHPCBF_PATH} --standard=PSR12 .
+                bat """
+                ${PHPCBF_PATH} --standard=PSR12 .
                 exit /b 0
                 """
             }
@@ -25,15 +26,17 @@ pipeline {
         stage('Check Formatting (PHPCS)') {
             steps {
                 echo 'Running static code analysis with PHPCS...'
-                bat """${PHPCS_PATH} --standard=PSR12 .
+                bat """
+                ${PHPCS_PATH} --standard=PSR12 .
                 exit /b 0
-                """ // Contoh dengan PHP_CodeSniffer
+                """
             }
         }
         stage('Report Formatting Issues') {
             steps {
                 echo 'Reporting remaining formatting issues...'
-                bat """${PHPCS_PATH} --standard=PSR12 .
+                bat """
+                ${PHPCS_PATH} --standard=PSR12 .
                 exit /b 0
                 """
             }
@@ -49,17 +52,16 @@ pipeline {
                 """
             }
         }
-
         stage('Unit Tests') {
             steps {
                 echo 'Running unit tests...'
-                bat 'phpunit --configuration phpunit.xml' // Jalankan PHPUnit jika tersedia
+                bat 'phpunit --configuration phpunit.xml'
             }
         }
         stage('DAST - Dynamic Application Security Testing') {
             steps {
                 echo 'Running DAST scan...'
-                sh """
+                bat """
                 zap-cli quick-scan --self-contained --start-options '-config api.disablekey=true' ${TEST_URL}
                 """
             }
