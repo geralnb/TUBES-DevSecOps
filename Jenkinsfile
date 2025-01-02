@@ -53,7 +53,7 @@ pipeline {
                 git fetch origin
                 git checkout dev
                 git config user.name "geralnb"
-                git config user.email "email@gmail.com"
+                git config user.email "shirometeora@gmail.com"
                 git add .
                 git commit -m "Auto-fix formatting issues using PHPCBF #31"
                 git push origin dev
