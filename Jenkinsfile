@@ -50,7 +50,7 @@ pipeline {
         stage('Unit Tests') {
             steps {
                 echo 'Running unit tests...'
-                bat 'C:\\Users\\Geral\\vendor\\bin\\phpunit --configuration phpunit.xml'
+                bat 'C:\\Users\\Geral\\vendor\\bin\\phpunit --configuration C:\\ProgramData\\Jenkins\\.jenkins\\workspace\\TUBES\\phpunit.xml'
             }
         }
         stage('DAST - Dynamic Application Security Testing') {
