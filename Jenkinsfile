@@ -16,25 +16,25 @@ pipeline {
         }
         stage('Fix Formatting Issues') {
             steps {
-                catchError(buildResult: 'SUCCESS', stageResult: 'UNSTABLE') {
-                    bat """
-                    ${PHPCBF_PATH} --standard=PSR12 .
-                    """
-                }
+                echo 'Fixing formatting issues with PHPCBF...'
+                bat """
+                ${PHPCBF_PATH} --standard=PSR12 .
+                exit /b 0
+                """
             }
         }
         stage('Check Formatting (PHPCS)') {
             steps {
-                script {
-                    def result = bat(returnStatus: true, script: """
-                    ${PHPCS_PATH} --standard=PSR12 .
-                    """)
-                    echo "PHPCS exit code: ${result}"
-                }
+                echo 'Running static code analysis with PHPCS...'
+                bat """
+                ${PHPCS_PATH} --standard=PSR12 .
+                exit /b 0
+                """
             }
         }
         stage('Report Formatting Issues') {
             steps {
+                echo 'Reporting remaining formatting issues...'
                 bat """
                 ${PHPCS_PATH} --standard=PSR12 .
                 exit /b 0
