@@ -17,7 +17,8 @@ pipeline {
         stage('Fix Formatting Issues') {
             steps {
                 echo 'Fixing formatting issues with PHPCBF...'
-                bat "${PHPCBF_PATH} --standard=PSR12 . || true"
+                bat "${PHPCBF_PATH} --standard=PSR12 . 
+                exit /b 0"
             }
         }
         stage('Check Formatting (PHPCS)') {
