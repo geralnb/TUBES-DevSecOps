@@ -38,11 +38,13 @@ pipeline {
         }
         stage('Report Formatting Issues') {
             steps {
-                echo 'Reporting remaining formatting issues...'
-                bat """
-                ${PHPCS_PATH} --standard=PSR12 .
-                exit /b 0
-                """
+                catchError(buildResult: 'UNSTABLE', stageResult: 'UNSTABLE') {
+                    echo 'Reporting remaining formatting issues...'
+                    bat """
+                    ${PHPCS_PATH} --standard=PSR12 .
+                    exit /b 0
+                    """
+                }
             }
         }
         stage('Commit Changes') {
