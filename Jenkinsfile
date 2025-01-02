@@ -20,12 +20,30 @@ pipeline {
                 bat "${PHPCBF_PATH} --standard=PSR12 ."
             }
         }
-        stage('Static Code Analysis (SAST)') {
+        stage('Check Formatting (PHPCS)') {
             steps {
-                echo 'Running static code analysis...'
-                bat "${PHPCS_PATH} --standard=PSR12 ." // Contoh dengan PHP_CodeSniffer
+                echo 'Running static code analysis with PHPCS...'
+                bat "${PHPCS_PATH} --standard=PSR12 . || true" // Contoh dengan PHP_CodeSniffer
             }
         }
+        stage('Report Formatting Issues') {
+            steps {
+                echo 'Reporting remaining formatting issues...'
+                bat "${PHPCS_PATH} --standard=PSR12 ."
+            }
+        }
+        stage('Commit Changes') {
+            steps {
+                bat """
+                git config user.name "geralnb"
+                git config user.email "shirometeora@gmail.com"
+                git add .
+                git commit -m "Auto-fix formatting issues using PHPCBF"
+                git push origin dev
+                """
+            }
+        }
+
         stage('Unit Tests') {
             steps {
                 echo 'Running unit tests...'
