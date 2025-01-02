@@ -18,8 +18,8 @@ pipeline {
             steps {
                 echo 'Fixing formatting issues with PHPCBF...'
                 bat """
-                ${PHPCBF_PATH} --standard=PSR12 .
-                exit /b 0
+                ${PHPCBF_PATH} --standard=PSR12 . ${PHPCBF_PATH} --standard=PSR12 .
+                
                 """
             }
         }
@@ -28,7 +28,7 @@ pipeline {
                 echo 'Running static code analysis with PHPCS...'
                 bat """
                 ${PHPCS_PATH} --standard=PSR12 .
-                exit /b 0
+                || exit /b 0
                 """
             }
         }
