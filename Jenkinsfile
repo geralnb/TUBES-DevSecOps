@@ -4,7 +4,7 @@ pipeline {
         TEST_URL = 'http://localhost/laundry3/' // URL environment testing
         STAGING_URL = 'http://localhost/laundry3/' // URL environment staging
         STAGING_PATH = 'C:\\xampp\\htdocs\\laundry3' // Path ke folder staging
-        PHPCS_PATH = 'C:\\Users\\<username>\\AppData\\Roaming\\Composer\\vendor\\bin\\phpcs.bat'
+        PHPCS_PATH = 'C:\\Users\\Geral\\AppData\\Roaming\\Composer\\vendor\\bin\\phpcs.bat'
     }
     stages {
         stage('Syntax Check') {
@@ -16,7 +16,7 @@ pipeline {
         stage('Static Code Analysis (SAST)') {
             steps {
                 echo 'Running static code analysis...'
-                bat 'phpcs --standard=PSR12 ./src' // Contoh dengan PHP_CodeSniffer
+                bat "${PHPCS_PATH} --standard=PSR12 ." // Contoh dengan PHP_CodeSniffer
             }
         }
         stage('Unit Tests') {
