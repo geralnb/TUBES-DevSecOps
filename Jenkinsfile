@@ -16,25 +16,25 @@ pipeline {
         }
         stage('Fix Formatting Issues') {
             steps {
-                echo 'Fixing formatting issues with PHPCBF...'
-                bat """
-                ${PHPCBF_PATH} --standard=PSR12 .
-                exit /b 0
-                """
+                catchError(buildResult: 'SUCCESS', stageResult: 'UNSTABLE') {
+                    bat """
+                    ${PHPCBF_PATH} --standard=PSR12 .
+                    """
+                }
             }
         }
         stage('Check Formatting (PHPCS)') {
             steps {
-                echo 'Running static code analysis with PHPCS...'
-                bat """
-                ${PHPCS_PATH} --standard=PSR12 .
-                exit /b 0
-                """
+                script {
+                    def result = bat(returnStatus: true, script: """
+                    ${PHPCS_PATH} --standard=PSR12 .
+                    """)
+                    echo "PHPCS exit code: ${result}"
+                }
             }
         }
         stage('Report Formatting Issues') {
             steps {
-                echo 'Reporting remaining formatting issues...'
                 bat """
                 ${PHPCS_PATH} --standard=PSR12 .
                 exit /b 0
@@ -44,8 +44,8 @@ pipeline {
         stage('Commit Changes') {
             steps {
                 bat """
-                git config user.name "geralnb"
-                git config user.email "shirometeora@gmail.com"
+                git config user.name "username"
+                git config user.email "email@gmail.com"
                 git add .
                 git commit -m "Auto-fix formatting issues using PHPCBF"
                 git push origin dev
