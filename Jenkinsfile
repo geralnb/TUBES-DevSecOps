@@ -5,6 +5,7 @@ pipeline {
         STAGING_URL = 'http://localhost/laundry3/' // URL environment staging
         STAGING_PATH = 'C:\\xampp\\htdocs\\laundry3' // Path ke folder staging
         PHPCS_PATH = 'C:\\Users\\Geral\\AppData\\Roaming\\Composer\\vendor\\bin\\phpcs.bat'
+        PHPCBF_PATH = 'C:\\Users\\Geral\\AppData\\Roaming\\Composer\\vendor\\bin\\phpcbf.bat'
     }
     stages {
         stage('Syntax Check') {
