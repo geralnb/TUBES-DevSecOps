@@ -17,7 +17,7 @@ pipeline {
         stage('Fix Formatting Issues') {
             steps {
                 echo 'Fixing formatting issues with PHPCBF...'
-                bat "${PHPCBF_PATH} --standard=PSR12 ."
+                bat "${PHPCBF_PATH} --standard=PSR12 . || true"
             }
         }
         stage('Check Formatting (PHPCS)') {
@@ -29,7 +29,7 @@ pipeline {
         stage('Report Formatting Issues') {
             steps {
                 echo 'Reporting remaining formatting issues...'
-                bat "${PHPCS_PATH} --standard=PSR12 ."
+                bat "${PHPCS_PATH} --standard=PSR12 . || true"
             }
         }
         stage('Commit Changes') {
