@@ -50,6 +50,8 @@ pipeline {
         stage('Commit Changes') {
             steps {
                 bat """
+                git fetch origin
+                git checkout dev || git checkout -b dev
                 git config user.name "geralnb"
                 git config user.email "shirometeora@gmail.com"
                 git add .
