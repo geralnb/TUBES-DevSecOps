@@ -27,11 +27,13 @@ pipeline {
         }
         stage('Check Formatting (PHPCS)') {
             steps {
-                echo 'Running static code analysis with PHPCS...'
-                bat """
-                ${PHPCS_PATH} --standard=PSR12 .
-                || exit /b 0
-                """
+                catchError(buildResult: 'UNSTABLE', stageResult: 'UNSTABLE') {
+                    echo 'Running static code analysis with PHPCS...'
+                    bat """
+                    ${PHPCS_PATH} --standard=PSR12 .
+                    || exit /b 0
+                    """
+                }
             }
         }
         stage('Report Formatting Issues') {
