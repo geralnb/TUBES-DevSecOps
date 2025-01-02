@@ -1,17 +1,18 @@
 ;
 // jQuery toast plugin created by Kamran Ahmed copyright MIT license 2015
 if ( typeof Object.create !== 'function' ) {
-    Object.create = function( obj ) {
-        function F() {}
+    Object.create = function ( obj ) {
+        function F()
+        {}
         F.prototype = obj;
         return new F();
     };
 }
 
-(function( $, window, document, undefined ) {
+(function ( $, window, document, undefined ) {
 
     "use strict";
-    
+
     var Toast = {
 
         _positionClasses : ['bottom-left', 'bottom-right', 'top-right', 'top-left', 'bottom-center', 'top-center', 'mid-center'],
@@ -22,14 +23,14 @@ if ( typeof Object.create !== 'function' ) {
             this.process();
         },
 
-        prepareOptions: function(options, options_to_extend) {
+        prepareOptions: function (options, options_to_extend) {
             var _options = {};
             if ( ( typeof options === 'string' ) || ( options instanceof Array ) ) {
                 _options.text = options;
             } else {
                 _options = options;
             }
-            this.options = $.extend( {}, options_to_extend, _options );
+            this.options = $.extend({}, options_to_extend, _options);
         },
 
         process: function () {
@@ -41,24 +42,23 @@ if ( typeof Object.create !== 'function' ) {
         },
 
         setup: function () {
-            
+
             var _toastContent = '';
-            
+
             this._toastEl = this._toastEl || $('<div></div>', {
                 class : 'jq-toast-single'
             });
 
             // For the loader on top
-            _toastContent += '<span class="jq-toast-loader"></span>';            
+            _toastContent += '<span class="jq-toast-loader"></span>';
 
             if ( this.options.allowToastClose ) {
                 _toastContent += '<span class="close-jq-toast-single">&times;</span>';
             };
 
             if ( this.options.text instanceof Array ) {
-
                 if ( this.options.heading ) {
-                    _toastContent +='<h2 class="jq-toast-heading">' + this.options.heading + '</h2>';
+                    _toastContent += '<h2 class="jq-toast-heading">' + this.options.heading + '</h2>';
                 };
 
                 _toastContent += '<ul class="jq-toast-ul">';
@@ -66,15 +66,14 @@ if ( typeof Object.create !== 'function' ) {
                     _toastContent += '<li class="jq-toast-li" id="jq-toast-item-' + i + '">' + this.options.text[i] + '</li>';
                 }
                 _toastContent += '</ul>';
-
             } else {
                 if ( this.options.heading ) {
-                    _toastContent +='<h2 class="jq-toast-heading">' + this.options.heading + '</h2>';
+                    _toastContent += '<h2 class="jq-toast-heading">' + this.options.heading + '</h2>';
                 };
                 _toastContent += this.options.text;
             }
 
-            this._toastEl.html( _toastContent );
+            this._toastEl.html(_toastContent);
 
             if ( this.options.bgColor !== false ) {
                 this._toastEl.css("background-color", this.options.bgColor);
@@ -98,27 +97,25 @@ if ( typeof Object.create !== 'function' ) {
         },
 
         position: function () {
-            if ( ( typeof this.options.position === 'string' ) && ( $.inArray( this.options.position, this._positionClasses) !== -1 ) ) {
-
+            if ( ( typeof this.options.position === 'string' ) && ( $.inArray(this.options.position, this._positionClasses) !== -1 ) ) {
                 if ( this.options.position === 'bottom-center' ) {
                     this._container.css({
-                        left: ( $(window).outerWidth() / 2 ) - this._container.outerWidth()/2,
+                        left: ( $(window).outerWidth() / 2 ) - this._container.outerWidth() / 2,
                         bottom: 20
                     });
                 } else if ( this.options.position === 'top-center' ) {
                     this._container.css({
-                        left: ( $(window).outerWidth() / 2 ) - this._container.outerWidth()/2,
+                        left: ( $(window).outerWidth() / 2 ) - this._container.outerWidth() / 2,
                         top: 20
                     });
                 } else if ( this.options.position === 'mid-center' ) {
                     this._container.css({
-                        left: ( $(window).outerWidth() / 2 ) - this._container.outerWidth()/2,
-                        top: ( $(window).outerHeight() / 2 ) - this._container.outerHeight()/2
+                        left: ( $(window).outerWidth() / 2 ) - this._container.outerWidth() / 2,
+                        top: ( $(window).outerHeight() / 2 ) - this._container.outerHeight() / 2
                     });
                 } else {
-                    this._container.addClass( this.options.position );
+                    this._container.addClass(this.options.position);
                 }
-
             } else if ( typeof this.options.position === 'object' ) {
                 this._container.css({
                     top : this.options.position.top ? this.options.position.top : 'auto',
@@ -127,7 +124,7 @@ if ( typeof Object.create !== 'function' ) {
                     right : this.options.position.right ? this.options.position.right : 'auto'
                 });
             } else {
-                this._container.addClass( 'bottom-left' );
+                this._container.addClass('bottom-left');
             }
         },
 
@@ -143,7 +140,7 @@ if ( typeof Object.create !== 'function' ) {
 
                 e.preventDefault();
 
-                if( that.options.showHideTransition === 'fade') {
+                if ( that.options.showHideTransition === 'fade') {
                     that._toastEl.trigger('beforeHide');
                     that._toastEl.fadeOut(function () {
                         that._toastEl.trigger('afterHidden');
@@ -183,45 +180,41 @@ if ( typeof Object.create !== 'function' ) {
                 this._toastEl.on('afterHidden', function () {
                     that.options.afterHidden();
                 });
-            };          
+            };
         },
 
         addToDom: function () {
 
              var _container = $('.jq-toast-wrap');
-             
-             if ( _container.length === 0 ) {
-                
+
+            if ( _container.length === 0 ) {
                 _container = $('<div></div>',{
                     class: "jq-toast-wrap"
                 });
 
-                $('body').append( _container );
-
-             } else if ( !this.options.stack || isNaN( parseInt(this.options.stack, 10) ) ) {
+                $('body').append(_container);
+            } else if ( !this.options.stack || isNaN(parseInt(this.options.stack, 10)) ) {
                 _container.empty();
-             }
+            }
 
              _container.find('.jq-toast-single:hidden').remove();
 
-             _container.append( this._toastEl );
+             _container.append(this._toastEl);
 
-            if ( this.options.stack && !isNaN( parseInt( this.options.stack ), 10 ) ) {
-                
+            if ( this.options.stack && !isNaN(parseInt(this.options.stack), 10) ) {
                 var _prevToastCount = _container.find('.jq-toast-single').length,
                     _extToastCount = _prevToastCount - this.options.stack;
 
                 if ( _extToastCount > 0 ) {
                     $('.jq-toast-wrap').find('.jq-toast-single').slice(0, _extToastCount).remove();
                 };
-
             }
 
             this._container = _container;
         },
 
         canAutoHide: function () {
-            return ( this.options.hideAfter !== false ) && !isNaN( parseInt( this.options.hideAfter, 10 ) );
+            return ( this.options.hideAfter !== false ) && !isNaN(parseInt(this.options.hideAfter, 10));
         },
 
         processLoader: function () {
@@ -258,25 +251,24 @@ if ( typeof Object.create !== 'function' ) {
             this._toastEl.trigger('beforeShow');
 
             if ( this.options.showHideTransition.toLowerCase() === 'fade' ) {
-                this._toastEl.fadeIn(function ( ){
+                this._toastEl.fadeIn(function ( ) {
                     that._toastEl.trigger('afterShown');
                 });
             } else if ( this.options.showHideTransition.toLowerCase() === 'slide' ) {
-                this._toastEl.slideDown(function ( ){
+                this._toastEl.slideDown(function ( ) {
                     that._toastEl.trigger('afterShown');
                 });
             } else {
-                this._toastEl.show(function ( ){
+                this._toastEl.show(function ( ) {
                     that._toastEl.trigger('afterShown');
                 });
             }
 
             if (this.canAutoHide()) {
-
                 var that = this;
 
-                window.setTimeout(function(){
-                    
+                window.setTimeout(function () {
+
                     if ( that.options.showHideTransition.toLowerCase() === 'fade' ) {
                         that._toastEl.trigger('beforeHide');
                         that._toastEl.fadeOut(function () {
@@ -308,25 +300,25 @@ if ( typeof Object.create !== 'function' ) {
 
         },
 
-        update: function(options) {
+        update: function (options) {
             this.prepareOptions(options, this.options);
             this.setup();
             this.bindToast();
         }
     };
-    
-    $.toast = function(options) {
+
+    $.toast = function (options) {
         var toast = Object.create(Toast);
         toast.init(options, this);
 
         return {
-            
+
             reset: function ( what ) {
-                toast.reset( what );
+                toast.reset(what);
             },
 
-            update: function( options ) {
-                toast.update( options );
+            update: function ( options ) {
+                toast.update(options);
             }
         }
     };
@@ -351,4 +343,4 @@ if ( typeof Object.create !== 'function' ) {
         afterHidden: function () {}
     };
 
-})( jQuery, window, document );
+})(jQuery, window, document);

@@ -1,12 +1,11 @@
 <?php
+
 $title = 'Tambah Data Outlet';
 require 'koneksi.php';
-
 if (isset($_POST['btn-simpan'])) {
     $nama = $_POST['nama_outlet'];
     $alamat = $_POST['alamat_outlet'];
     $telp = $_POST['telp_outlet'];
-
     $query = "INSERT INTO outlet (nama_outlet, alamat_outlet, telp_outlet) values ('$nama', '$alamat', '$telp')";
     $insert = mysqli_query($conn, $query);
     if ($insert == 1) {

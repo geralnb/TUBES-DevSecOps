@@ -54,7 +54,7 @@ require 'header.php';
                                 $no = 1;
                                 if (mysqli_num_rows($data) > 0) {
                                     while ($plg = mysqli_fetch_assoc($data)) {
-                                ?>
+                                        ?>
 
                                         <tr>
                                             <td><?= $no++; ?></td>
@@ -78,7 +78,7 @@ require 'header.php';
                                                 </div>
                                             </td>
                                         </tr>
-                                <?php }
+                                    <?php }
                                 }
                                 ?>
                             </tbody>

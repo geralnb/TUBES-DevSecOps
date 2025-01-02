@@ -1,15 +1,15 @@
 .morris-hover {
-	position:absolute;
-	z-index:1;
+    position:absolute;
+    z-index:1;
 }
 
 .morris-hover.morris-default-style .morris-hover-row-label {
-	font-weight:bold;
-	margin:0.25em 0
+    font-weight:bold;
+    margin:0.25em 0
 }
 .morris-hover.morris-default-style .morris-hover-point {
-	white-space:nowrap;
-	margin:0.1em 0
+    white-space:nowrap;
+    margin:0.1em 0
 }
 .morris-hover.morris-default-style {
     border-radius: 2px;

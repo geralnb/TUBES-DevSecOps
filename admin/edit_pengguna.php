@@ -66,7 +66,7 @@ require 'header.php';
                         <div class="card-title"><?= $title; ?></div>
                     </div>
                     <?php while ($edit = mysqli_fetch_array($queryedit)) {
-                    ?>
+                        ?>
                         <form action="" method="POST">
                             <div class="card-body">
                                 <div class="form-group">
@@ -104,5 +104,5 @@ require 'header.php';
         </div>
     </div>
 </div>
-<?php } ?>
+                    <?php } ?>
 <?php require 'footer.php';

@@ -13,7 +13,6 @@ if (isset($_POST['btn-simpan'])) {
 
     $insert = mysqli_query($conn, $query);
     if ($insert == 1) {
-
         $_SESSION['msg'] = 'Berhasil menambahkan ' . $role . ' baru';
         header('location:pengguna.php');
     } else {

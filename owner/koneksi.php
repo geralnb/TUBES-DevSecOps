@@ -1,4 +1,5 @@
 <?php
+
 session_start();
 if ($_SESSION) {
     if ($_SESSION['role'] == 'owner') {
@@ -10,7 +11,6 @@ if ($_SESSION) {
 }
 
 $conn = mysqli_connect("localhost", "root", "", "db_laundry");
-
 if (mysqli_connect_error()) {
     echo "Koneksi ke database gagal : " . mysqli_connect_error();
 }

@@ -53,7 +53,7 @@ require 'header.php';
                                 $no = 1;
                                 if (mysqli_num_rows($data) > 0) {
                                     while ($user = mysqli_fetch_assoc($data)) {
-                                ?>
+                                        ?>
 
                                         <tr>
                                             <td><?= $no++; ?></td>
@@ -62,9 +62,9 @@ require 'header.php';
                                             <td><?= $user['role']; ?></td>
                                             <!-- <td><?php if ($user['jenis_kelamin'] == 'L') {
                                                             echo "Laki-laki";
-                                                        } else {
-                                                            echo "Perempuan";
-                                                        } ?>
+                                                     } else {
+                                                         echo "Perempuan";
+                                                     } ?>
                                             </td> -->
                                             <td>
                                                 <div class="form-button-action">
@@ -77,7 +77,7 @@ require 'header.php';
                                                 </div>
                                             </td>
                                         </tr>
-                                <?php }
+                                    <?php }
                                 }
                                 ?>
                             </tbody>

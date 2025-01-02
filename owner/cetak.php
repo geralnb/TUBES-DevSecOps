@@ -41,7 +41,7 @@ setlocale(LC_TIME, 'id_ID.utf8');
             $no = 1;
             if (mysqli_num_rows($data) > 0) {
                 while ($trans = mysqli_fetch_assoc($data)) {
-            ?>
+                    ?>
 
                     <tr>
                         <td><?= $no++; ?></td>
@@ -52,7 +52,7 @@ setlocale(LC_TIME, 'id_ID.utf8');
                         <td><?= 'Rp ' . number_format($trans['total_harga']); ?></td>
                         <td><?= $trans['nama_outlet']; ?></td>
                     </tr>
-            <?php }
+                <?php }
             }
             ?>
         </tbody>

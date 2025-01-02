@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(document).ready(function () {
     // Simple map
     map = new GMaps({
         el: '#gmaps-simple',

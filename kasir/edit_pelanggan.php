@@ -57,7 +57,7 @@ require 'header.php';
                         <div class="card-title"><?= $title; ?></div>
                     </div>
                     <?php while ($edit = mysqli_fetch_array($queryedit)) {
-                    ?>
+                        ?>
                         <form action="" method="POST">
                             <div class="card-body">
                                 <div class="form-group">
@@ -81,10 +81,10 @@ require 'header.php';
                                     <select name="jenis_kelamin" class="form-control form-control" id="defaultSelect">
                                         <option value="L" <?php if ($edit['jenis_kelamin'] == 'L') {
                                                                 echo "selected";
-                                                            } ?>>Laki-laki</option>
+                                                          } ?>>Laki-laki</option>
                                         <option value="P" <?php if ($edit['jenis_kelamin'] == 'P') {
                                                                 echo "selected";
-                                                            } ?>>Perempuan</option>
+                                                          } ?>>Perempuan</option>
                                     </select>
                                 </div>
                                 <div class="card-action">
@@ -98,5 +98,5 @@ require 'header.php';
         </div>
     </div>
 </div>
-<?php } ?>
+                    <?php } ?>
 <?php require 'footer.php';

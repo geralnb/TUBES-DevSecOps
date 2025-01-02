@@ -75,11 +75,11 @@
                                                 <h4><?= $_SESSION['username']; ?></h4>
                                                 <p class="text-muted"><?php if ($_SESSION['role'] == 'admin') {
                                                                             echo "Administrator";
-                                                                        } else if ($_SESSION['role'] == 'kasir') {
-                                                                            echo "Kasir";
-                                                                        } else {
-                                                                            echo "Owner";
-                                                                        } ?></p>
+                                                                      } elseif ($_SESSION['role'] == 'kasir') {
+                                                                          echo "Kasir";
+                                                                      } else {
+                                                                          echo "Owner";
+                                                                      } ?></p>
                                             </div>
                                         </div>
                                     </li>
@@ -108,11 +108,11 @@
                                     <?= $_SESSION['username']; ?>
                                     <span class="user-level"><?php if ($_SESSION['role'] == 'admin') {
                                                                     echo "Administrator";
-                                                                } else if ($_SESSION['role'] == 'kasir') {
-                                                                    echo "Kasir";
-                                                                } else {
-                                                                    echo "Owner";
-                                                                } ?></span>
+                                                             } elseif ($_SESSION['role'] == 'kasir') {
+                                                                 echo "Kasir";
+                                                             } else {
+                                                                 echo "Owner";
+                                                             } ?></span>
                                 </span>
                             </a>
 

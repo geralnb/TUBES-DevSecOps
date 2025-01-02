@@ -1,14 +1,13 @@
 <?php
+
 session_start();
 $conn = mysqli_connect("localhost", "root", "", "NAMA_DATABASE");
-
 $username = $_POST['username'];
 $password = md5($_POST['password']);
 $query = "SELECT * FROM user WHERE username = '$username' AND password = '$password'";
 $row = mysqli_query($conn, $query);
 $data = mysqli_fetch_assoc($row);
 $cek = mysqli_num_rows($row);
-
 if ($cek > 0) {
     if ($data['role'] == 'admin') {
         $_SESSION['role'] = 'admin';
@@ -16,13 +15,13 @@ if ($cek > 0) {
         $_SESSION['user_id'] = $data['id_user'];
         $_SESSION['outlet_id'] = $data['outlet_id'];
         header('location:admin');
-    } else if ($data['role'] == 'kasir') {
+    } elseif ($data['role'] == 'kasir') {
         $_SESSION['role'] = 'kasir';
         $_SESSION['username'] = $data['username'];
         $_SESSION['user_id'] = $data['id_user'];
         $_SESSION['outlet_id'] = $data['outlet_id'];
         header('location:kasir');
-    } else if ($data['role'] == 'owner') {
+    } elseif ($data['role'] == 'owner') {
         $_SESSION['role'] = 'owner';
         $_SESSION['username'] = $data['username'];
         $_SESSION['user_id'] = $data['id_user'];

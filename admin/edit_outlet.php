@@ -98,11 +98,11 @@ require 'header.php';
                                         <?php endforeach ?>
                                     </select>
                             </div>
-                        <?php else : ?>
+                                <?php else : ?>
                             <label for="defaultSelect">Owner Sekarang : <?= $edit['nama_user']; ?></label>
                             <select name="owner_new_id" class="form-control form-control" id="defaultSelect">
                                 <!-- <option value="">Pilih Owner Baru</option> -->
-                                <?php foreach ($data2 as $owner) :  ?>
+                                    <?php foreach ($data2 as $owner) :  ?>
                                     <option value="<?= $owner['id_user']; ?>" selected><?= $owner['nama_user'] ?>
                                         <?php if ($owner['outlet_id'] == null) : ?>
                                             (Belum memiliki outlet)
@@ -110,10 +110,10 @@ require 'header.php';
                                             (Owner berada di <?= $owner['nama_outlet']; ?>)
                                         <?php endif ?>
                                     </option>
-                                <?php endforeach ?>
+                                    <?php endforeach ?>
                             </select>
                         </div>
-                    <?php endif; ?>
+                                <?php endif; ?>
                     <div class="card-action">
                         <button type="submit" name="btn-simpan" class="btn btn-success">Submit</button>
                         <!-- <button class="btn btn-danger">Cancel</button> -->
