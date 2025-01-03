@@ -56,7 +56,7 @@ pipeline {
         stage('DAST - Dynamic Application Security Testing') {
             steps {
                 echo 'Running DAST scan with Python script...'
-                bat 'python C:\\ProgramData\\Jenkins\\.jenkins\\workspace\\TUBES\\zap_scan.py'
+                bat 'C:\\Users\\Geral\\AppData\\Local\\Programs\\Python\\Python311\\python.exe C:\\ProgramData\\Jenkins\\.jenkins\\workspace\\TUBES\\zap_scan.py'
             }
         }
         stage('Deploy to Staging') {
