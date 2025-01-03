@@ -55,10 +55,9 @@ pipeline {
         }
         stage('DAST - Dynamic Application Security Testing') {
             steps {
-                echo 'Running DAST scan...'
-                bat """
-                zap-cli quick-scan --self-contained --start-options '-config api.disablekey=true' ${TEST_URL}
-                """
+                echo 'Running DAST scan with Python script...'
+                bat 'python C:\\ProgramData\\Jenkins\\.jenkins\\workspace\\TUBES\\zap_scan.py'
+
             }
         }
         stage('Deploy to Staging') {
