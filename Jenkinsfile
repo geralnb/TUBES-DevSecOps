@@ -57,7 +57,6 @@ pipeline {
             steps {
                 echo 'Running DAST scan with Python script...'
                 bat 'python C:\\ProgramData\\Jenkins\\.jenkins\\workspace\\TUBES\\zap_scan.py'
-
             }
         }
         stage('Deploy to Staging') {
